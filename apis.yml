@@ -52,6 +52,8 @@ apis:
       - type: Mobile SDK
         url: https://developers.freshchat.com/mobile-sdk/
 common:
+  - type: GitHubOrganization
+    url: https://github.com/freshworks
   - type: Website
     url: https://www.freshworks.com/live-chat-software/
   - type: Documentation
