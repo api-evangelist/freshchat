@@ -68,6 +68,8 @@ common:
     url: https://support.freshchat.com
   - type: LinkedIn
     url: https://www.linkedin.com/company/freshworks-inc
+  - type: LLMsTxt
+    url: https://api.freshchat.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
