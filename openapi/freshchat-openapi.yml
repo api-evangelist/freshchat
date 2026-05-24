@@ -1,0 +1,321 @@
+openapi: 3.1.0
+info:
+  title: Freshchat REST API
+  version: "v2"
+  description: |
+    Best-effort OpenAPI 3.1 description of the Freshchat REST API v2 for managing
+    agents, users, conversations, messages, channels, groups, and roles.
+    Generated from public documentation; not an official spec.
+  contact:
+    name: Freshchat Developer Portal
+    url: https://developers.freshchat.com/api/
+servers:
+  - url: https://{account}.freshchat.com/v2
+    description: Account-scoped base URL
+    variables:
+      account:
+        default: api
+        description: Account subdomain
+security:
+  - bearerAuth: []
+tags:
+  - name: Accounts
+  - name: Users
+  - name: Conversations
+  - name: Messages
+  - name: Files
+  - name: Agents
+  - name: Groups
+  - name: Channels
+  - name: Roles
+  - name: OutboundMessages
+  - name: CSAT
+  - name: Metrics
+  - name: BusinessHours
+paths:
+  /accounts/configuration:
+    get:
+      tags: [Accounts]
+      operationId: getAccountConfiguration
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /users:
+    get:
+      tags: [Users]
+      operationId: listUsers
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+    post:
+      tags: [Users]
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "201": { $ref: "#/components/responses/Ok" }
+  /users/fetch:
+    post:
+      tags: [Users]
+      operationId: fetchUsers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /users/{user_id}:
+    parameters:
+      - $ref: "#/components/parameters/UserId"
+    get:
+      tags: [Users]
+      operationId: getUser
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+    put:
+      tags: [Users]
+      operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+    delete:
+      tags: [Users]
+      operationId: deleteUser
+      responses:
+        "204": { description: No Content }
+  /users/{user_id}/conversations:
+    parameters:
+      - $ref: "#/components/parameters/UserId"
+    get:
+      tags: [Users]
+      operationId: listUserConversations
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /conversations:
+    post:
+      tags: [Conversations]
+      operationId: createConversation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "201": { $ref: "#/components/responses/Ok" }
+  /conversations/{conversation_id}:
+    parameters:
+      - $ref: "#/components/parameters/ConversationId"
+    get:
+      tags: [Conversations]
+      operationId: getConversation
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+    put:
+      tags: [Conversations]
+      operationId: updateConversation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /conversations/{conversation_id}/messages:
+    parameters:
+      - $ref: "#/components/parameters/ConversationId"
+    get:
+      tags: [Messages]
+      operationId: listMessages
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+    post:
+      tags: [Messages]
+      operationId: sendMessage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "201": { $ref: "#/components/responses/Ok" }
+  /conversations/fields:
+    get:
+      tags: [Conversations]
+      operationId: listConversationFields
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /files/upload:
+    post:
+      tags: [Files]
+      operationId: uploadFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file: { type: string, format: binary }
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /images/upload:
+    post:
+      tags: [Files]
+      operationId: uploadImage
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file: { type: string, format: binary }
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /agents:
+    get:
+      tags: [Agents]
+      operationId: listAgents
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+    post:
+      tags: [Agents]
+      operationId: createAgent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "201": { $ref: "#/components/responses/Ok" }
+  /agents/{agent_id}:
+    parameters:
+      - in: path
+        name: agent_id
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Agents]
+      operationId: getAgent
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+    put:
+      tags: [Agents]
+      operationId: updateAgent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+    delete:
+      tags: [Agents]
+      operationId: deleteAgent
+      responses:
+        "204": { description: No Content }
+  /agents/status:
+    get:
+      tags: [Agents]
+      operationId: listAgentStatuses
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /groups:
+    get:
+      tags: [Groups]
+      operationId: listGroups
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /channels:
+    get:
+      tags: [Channels]
+      operationId: listChannels
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /roles:
+    get:
+      tags: [Roles]
+      operationId: listRoles
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /outbound-messages/whatsapp:
+    post:
+      tags: [OutboundMessages]
+      operationId: sendOutboundWhatsAppMessage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "201": { $ref: "#/components/responses/Ok" }
+  /outbound-messages:
+    get:
+      tags: [OutboundMessages]
+      operationId: listOutboundMessages
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /csat/{conversation_id}:
+    parameters:
+      - $ref: "#/components/parameters/ConversationId"
+    post:
+      tags: [CSAT]
+      operationId: createCsatRating
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/Object" }
+      responses:
+        "201": { $ref: "#/components/responses/Ok" }
+  /metrics/historical:
+    get:
+      tags: [Metrics]
+      operationId: getHistoricalMetrics
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /metrics/instant:
+    get:
+      tags: [Metrics]
+      operationId: getInstantMetrics
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+  /business-hours/within-bh:
+    get:
+      tags: [BusinessHours]
+      operationId: getWithinBusinessHours
+      responses:
+        "200": { $ref: "#/components/responses/Ok" }
+components:
+  parameters:
+    UserId:
+      in: path
+      name: user_id
+      required: true
+      schema: { type: string }
+    ConversationId:
+      in: path
+      name: conversation_id
+      required: true
+      schema: { type: string }
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token generated in the Freshchat admin console.
+  schemas:
+    Object:
+      type: object
+      additionalProperties: true
+  responses:
+    Ok:
+      description: Successful response
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Object" }
