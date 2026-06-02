@@ -1,0 +1,462 @@
+asyncapi: "2.6.0"
+info:
+  title: Freshchat Webhooks
+  version: "1.0.0"
+  description: |
+    AsyncAPI 2.6 description of the Freshchat outbound webhook surface.
+
+    Freshchat delivers events to a customer-configured HTTPS endpoint
+    ("Webhook URL") set in the Freshchat admin console. Each delivery is a
+    JSON HTTP request that includes a cryptographic signature for verification.
+
+    Event types and payload shapes are taken verbatim from Freshchat's public
+    webhook documentation. Only events that Freshchat officially documents are
+    modelled here; events that were not found in public documentation
+    (for example `conversation_create`, `user_create`, `user_update`,
+    `conversation_update`) are intentionally omitted to avoid fabrication.
+
+    Source: https://crmsupport.freshworks.com/support/solutions/articles/50000004461-freshchat-webhooks-payload-structure-and-authentication
+  contact:
+    name: Freshchat Developer Portal
+    url: https://developers.freshchat.com/api/
+  license:
+    name: Proprietary
+    url: https://www.freshworks.com/legal/
+
+defaultContentType: application/json
+
+servers:
+  subscriber:
+    url: "{webhookUrl}"
+    protocol: https
+    description: |
+      Customer-hosted HTTPS endpoint that Freshchat POSTs webhook events to.
+      The URL is configured by an admin in the Freshchat admin console.
+    variables:
+      webhookUrl:
+        default: https://example.com/freshchat/webhook
+        description: The customer-configured webhook receiver URL.
+
+channels:
+  /:
+    description: |
+      Single webhook receiver endpoint. Freshchat posts all configured event
+      types to the same URL; receivers route on the top-level `action` field.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: "0.3.0"
+    publish:
+      summary: Webhook events delivered by Freshchat to the subscriber.
+      operationId: receiveFreshchatEvent
+      bindings:
+        http:
+          bindingVersion: "0.3.0"
+      message:
+        oneOf:
+          - $ref: "#/components/messages/MessageCreate"
+          - $ref: "#/components/messages/ConversationAssignment"
+          - $ref: "#/components/messages/ConversationResolution"
+          - $ref: "#/components/messages/ConversationReopen"
+
+components:
+  messages:
+    MessageCreate:
+      name: message_create
+      title: Message Create
+      summary: Fired when a message is created in a conversation by a user or agent.
+      contentType: application/json
+      headers:
+        $ref: "#/components/schemas/WebhookHeaders"
+      payload:
+        $ref: "#/components/schemas/MessageCreateEvent"
+      examples:
+        - name: agentMessage
+          summary: Agent-authored message
+          headers:
+            X-Retry-Count: "0"
+            X-Freshchat-Payload-Version: "1.0"
+            X-Freshchat-Signature: "<base64-rsa-sha256-signature>"
+          payload:
+            actor:
+              actor_type: agent
+              actor_id: ae72b467-a0d2-43a6-a1c7-8cf33d68c7c4
+            action: message_create
+            action_time: "2020-04-06T15:59:44.725Z"
+            data:
+              message:
+                message_parts:
+                  - text:
+                      content: "Hi!!! Agent this side"
+                app_id: 87f6d88a-3921-4515-8acf-18fe4d2b4149
+                actor_id: ae72b467-a0d2-43a6-a1c7-8cf33d68c7c4
+                id: 35814612-97f6-43bb-9266-cf6cd7cf6a0e
+                channel_id: c5456f9e-9131-43aa-b3ec-29535bc7691d
+                conversation_id: aecf3cc7-138a-4b40-9723-5bf4d1abb97b
+                message_type: normal
+                actor_type: agent
+                created_time: "2020-04-06T15:59:44.709Z"
+                user_id: 5cac723a-13aa-473e-846b-9cdb7d2c41a5
+                message_source: web
+        - name: userMessage
+          summary: End-user-authored message
+          headers:
+            X-Retry-Count: "0"
+            X-Freshchat-Payload-Version: "1.0"
+            X-Freshchat-Signature: "<base64-rsa-sha256-signature>"
+          payload:
+            actor:
+              actor_type: user
+              actor_id: 5cac723a-13aa-473e-846b-9cdb7d2c41a5
+            action: message_create
+            action_time: "2020-04-06T15:59:29.981Z"
+            data:
+              message:
+                message_parts:
+                  - text:
+                      content: "User here, I am going"
+                app_id: 87f6d88a-3921-4515-8acf-18fe4d2b4149
+                actor_id: 5cac723a-13aa-473e-846b-9cdb7d2c41a5
+                id: ae46748d-daea-44ae-bd41-11eb4797853d
+                channel_id: c5456f9e-9131-43aa-b3ec-29535bc7691d
+                conversation_id: aecf3cc7-138a-4b40-9723-5bf4d1abb97b
+                message_type: normal
+                actor_type: user
+                created_time: "2020-04-06T15:59:29.971Z"
+                message_source: web
+
+    ConversationAssignment:
+      name: conversation_assignment
+      title: Conversation Assignment
+      summary: Fired when a conversation is assigned to or reassigned between agents/groups.
+      contentType: application/json
+      headers:
+        $ref: "#/components/schemas/WebhookHeaders"
+      payload:
+        $ref: "#/components/schemas/ConversationAssignmentEvent"
+      examples:
+        - name: assignedToAgent
+          headers:
+            X-Retry-Count: "0"
+            X-Freshchat-Payload-Version: "1.0"
+            X-Freshchat-Signature: "<base64-rsa-sha256-signature>"
+          payload:
+            actor:
+              actor_type: agent
+              actor_id: 999abdc6-e4b1-4944-a246-86f63109df7e
+            action: conversation_assignment
+            action_time: "2020-04-07T13:35:18.622Z"
+            data:
+              assignment:
+                assignor: agent
+                assignor_id: 999abdc6-e4b1-4944-a246-86f63109df7e
+                to_agent_id: 999abdc6-e4b1-4944-a246-86f63109df7e
+                to_group_id: f8552a49-e96d-400f-bea0-add54b5ba6fc
+                from_agent_id: ""
+                from_group_id: f8552a49-e96d-400f-bea0-add54b5ba6fc
+                conversation:
+                  conversation_id: 40c15ddf-74e0-41e5-870e-69187d085778
+                  app_id: c2bf4b15-38c5-49d1-b0d5-a2b86caac2b7
+                  status: assigned
+                  channel_id: 8dfdec10-1c12-48d6-9889-40fba30daefa
+                  assigned_agent_id: 999abdc6-e4b1-4944-a246-86f63109df7e
+                  assigned_group_id: f8552a49-e96d-400f-bea0-add54b5ba6fc
+
+    ConversationResolution:
+      name: conversation_resolution
+      title: Conversation Resolution
+      summary: Fired when a conversation is marked resolved.
+      contentType: application/json
+      headers:
+        $ref: "#/components/schemas/WebhookHeaders"
+      payload:
+        $ref: "#/components/schemas/ConversationResolutionEvent"
+      examples:
+        - name: resolvedByAgent
+          headers:
+            X-Retry-Count: "0"
+            X-Freshchat-Payload-Version: "1.0"
+            X-Freshchat-Signature: "<base64-rsa-sha256-signature>"
+          payload:
+            actor:
+              actor_type: agent
+              actor_id: ae72b467-a0d2-43a6-a1c7-8cf33d68c7c4
+            action: conversation_resolution
+            action_time: "2020-04-06T15:59:46.407Z"
+            data:
+              resolve:
+                resolver: agent
+                resolver_id: ae72b467-a0d2-43a6-a1c7-8cf33d68c7c4
+                conversation:
+                  conversation_id: aecf3cc7-138a-4b40-9723-5bf4d1abb97b
+                  app_id: 87f6d88a-3921-4515-8acf-18fe4d2b4149
+                  status: resolved
+                  channel_id: c5456f9e-9131-43aa-b3ec-29535bc7691d
+
+    ConversationReopen:
+      name: conversation_reopen
+      title: Conversation Reopen
+      summary: Fired when a resolved conversation is reopened.
+      contentType: application/json
+      headers:
+        $ref: "#/components/schemas/WebhookHeaders"
+      payload:
+        $ref: "#/components/schemas/ConversationReopenEvent"
+      examples:
+        - name: reopenedByUser
+          headers:
+            X-Retry-Count: "0"
+            X-Freshchat-Payload-Version: "1.0"
+            X-Freshchat-Signature: "<base64-rsa-sha256-signature>"
+          payload:
+            actor:
+              actor_type: user
+              actor_id: 5cac723a-13aa-473e-846b-9cdb7d2c41a5
+            action: conversation_reopen
+            action_time: "2020-04-06T15:59:50.314Z"
+            data:
+              reopen:
+                reopener: user
+                reopener_id: 5cac723a-13aa-473e-846b-9cdb7d2c41a5
+                conversation:
+                  conversation_id: aecf3cc7-138a-4b40-9723-5bf4d1abb97b
+                  app_id: 87f6d88a-3921-4515-8acf-18fe4d2b4149
+                  status: reopened
+                  channel_id: c5456f9e-9131-43aa-b3ec-29535bc7691d
+
+  schemas:
+    WebhookHeaders:
+      type: object
+      description: HTTP headers Freshchat sets on every webhook delivery.
+      properties:
+        X-Retry-Count:
+          type: string
+          description: Retry attempt number for this delivery.
+        X-Freshchat-Payload-Version:
+          type: string
+          description: Version of the Freshchat webhook payload format.
+        X-Freshchat-Signature:
+          type: string
+          description: |
+            Base64-encoded RSA signature of the request body, computed with
+            SHA256withRSA. Verify by decoding the signature and validating it
+            against the payload using the public key shown in Freshchat
+            webhook settings.
+
+    Actor:
+      type: object
+      description: Entity that triggered the event.
+      required:
+        - actor_type
+        - actor_id
+      properties:
+        actor_type:
+          type: string
+          enum: [user, agent, system]
+          description: Whether the event was triggered by a user, agent, or the system.
+        actor_id:
+          type: string
+          description: Identifier of the user, agent, or system actor.
+
+    MessagePart:
+      type: object
+      description: |
+        A single part of a message. Freshchat messages are composed of one or
+        more parts; the documented example here is a text part.
+      properties:
+        text:
+          type: object
+          properties:
+            content:
+              type: string
+              description: Text content of the message part.
+
+    Message:
+      type: object
+      description: A Freshchat message as delivered in a `message_create` event.
+      properties:
+        message_parts:
+          type: array
+          items:
+            $ref: "#/components/schemas/MessagePart"
+        app_id:
+          type: string
+          description: Freshchat app (account) identifier.
+        actor_id:
+          type: string
+          description: Identifier of the actor that authored the message.
+        id:
+          type: string
+          description: Unique message identifier.
+        channel_id:
+          type: string
+          description: Channel the message was sent on.
+        conversation_id:
+          type: string
+          description: Conversation the message belongs to.
+        message_type:
+          type: string
+          description: |
+            Message classification. Documented values include `normal` and
+            `private`; private messages are intended for internal use and may
+            appear as notes within the system.
+          enum: [normal, private]
+        actor_type:
+          type: string
+          enum: [user, agent, system]
+        created_time:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+          description: Conversation participant user identifier.
+        message_source:
+          type: string
+          description: Source channel the message originated from (e.g. `web`).
+
+    ConversationRef:
+      type: object
+      description: Conversation summary embedded in assignment, resolve, and reopen events.
+      properties:
+        conversation_id:
+          type: string
+        app_id:
+          type: string
+        status:
+          type: string
+          description: Conversation status at the time of the event.
+          enum: [new, assigned, resolved, reopened]
+        channel_id:
+          type: string
+        assigned_agent_id:
+          type: string
+        assigned_group_id:
+          type: string
+
+    Assignment:
+      type: object
+      properties:
+        assignor:
+          type: string
+          description: Actor type that performed the assignment (e.g. `agent`).
+        assignor_id:
+          type: string
+        to_agent_id:
+          type: string
+        to_group_id:
+          type: string
+        from_agent_id:
+          type: string
+        from_group_id:
+          type: string
+        conversation:
+          $ref: "#/components/schemas/ConversationRef"
+
+    Resolve:
+      type: object
+      properties:
+        resolver:
+          type: string
+          description: Actor type that resolved the conversation (e.g. `agent`, `user`).
+        resolver_id:
+          type: string
+        conversation:
+          $ref: "#/components/schemas/ConversationRef"
+
+    Reopen:
+      type: object
+      properties:
+        reopener:
+          type: string
+          description: Actor type that reopened the conversation (e.g. `agent`, `user`).
+        reopener_id:
+          type: string
+        conversation:
+          $ref: "#/components/schemas/ConversationRef"
+
+    EventEnvelope:
+      type: object
+      description: Common envelope shared by every Freshchat webhook event.
+      required:
+        - actor
+        - action
+        - action_time
+        - data
+      properties:
+        actor:
+          $ref: "#/components/schemas/Actor"
+        action:
+          type: string
+          description: The event type.
+        action_time:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the event occurred.
+        data:
+          type: object
+          description: Event-type-specific payload.
+
+    MessageCreateEvent:
+      allOf:
+        - $ref: "#/components/schemas/EventEnvelope"
+        - type: object
+          properties:
+            action:
+              type: string
+              const: message_create
+            data:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  $ref: "#/components/schemas/Message"
+
+    ConversationAssignmentEvent:
+      allOf:
+        - $ref: "#/components/schemas/EventEnvelope"
+        - type: object
+          properties:
+            action:
+              type: string
+              const: conversation_assignment
+            data:
+              type: object
+              required:
+                - assignment
+              properties:
+                assignment:
+                  $ref: "#/components/schemas/Assignment"
+
+    ConversationResolutionEvent:
+      allOf:
+        - $ref: "#/components/schemas/EventEnvelope"
+        - type: object
+          properties:
+            action:
+              type: string
+              const: conversation_resolution
+            data:
+              type: object
+              required:
+                - resolve
+              properties:
+                resolve:
+                  $ref: "#/components/schemas/Resolve"
+
+    ConversationReopenEvent:
+      allOf:
+        - $ref: "#/components/schemas/EventEnvelope"
+        - type: object
+          properties:
+            action:
+              type: string
+              const: conversation_reopen
+            data:
+              type: object
+              required:
+                - reopen
+              properties:
+                reopen:
+                  $ref: "#/components/schemas/Reopen"

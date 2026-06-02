@@ -21,7 +21,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/freshchat/refs/heads/main/apis.yml
 created: '2026-05-11'
-modified: '2026-05-11'
+modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
   - aid: freshchat:rest-api
@@ -51,6 +51,12 @@ apis:
         url: https://developers.freshchat.com/web-sdk/
       - type: Mobile SDK
         url: https://developers.freshchat.com/mobile-sdk/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/freshchat/refs/heads/main/openapi/freshchat-openapi.yml
+      - type: AsyncAPI
+        url: https://raw.githubusercontent.com/api-evangelist/freshchat/refs/heads/main/openapi/freshchat-asyncapi.yml
+      - type: Webhooks
+        url: https://crmsupport.freshworks.com/support/solutions/articles/50000004461-freshchat-webhooks-payload-structure-and-authentication
 common:
   - type: GitHubOrganization
     url: https://github.com/freshworks
