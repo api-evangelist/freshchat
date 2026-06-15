@@ -1,0 +1,574 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Freshchat REST API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getAccountConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/accounts/configuration"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/users"
+          }
+        },
+        {
+          "info": {
+            "name": "createUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "fetchUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/users/fetch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{account}.freshchat.com/v2/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{account}.freshchat.com/v2/users/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "listUserConversations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/users/:user_id/conversations",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "createConversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/conversations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getConversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/conversations/:conversation_id",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateConversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{account}.freshchat.com/v2/conversations/:conversation_id",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listConversationFields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/conversations/fields"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listMessages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/conversations/:conversation_id/messages",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "sendMessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/conversations/:conversation_id/messages",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "uploadFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/files/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "uploadImage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/images/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listAgents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/agents"
+          }
+        },
+        {
+          "info": {
+            "name": "createAgent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/agents",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAgent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/agents/:agent_id",
+            "params": [
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "updateAgent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{account}.freshchat.com/v2/agents/:agent_id",
+            "params": [
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteAgent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{account}.freshchat.com/v2/agents/:agent_id",
+            "params": [
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "listAgentStatuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/agents/status"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listGroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/groups"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listChannels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/channels"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/roles"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OutboundMessages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "sendOutboundWhatsAppMessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/outbound-messages/whatsapp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listOutboundMessages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/outbound-messages"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CSAT",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "createCsatRating",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/csat/:conversation_id",
+            "params": [
+              {
+                "name": "conversation_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getHistoricalMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/metrics/historical"
+          }
+        },
+        {
+          "info": {
+            "name": "getInstantMetrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/metrics/instant"
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BusinessHours",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getWithinBusinessHours",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/business-hours/within-bh"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
