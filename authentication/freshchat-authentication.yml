@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/freshchat-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer API token generated in the Freshchat admin console.
+  sources:
+  - openapi/freshchat-openapi.yml
