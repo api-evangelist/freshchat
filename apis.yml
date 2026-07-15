@@ -58,6 +58,8 @@ apis:
       - type: Webhooks
         url: https://crmsupport.freshworks.com/support/solutions/articles/50000004461-freshchat-webhooks-payload-structure-and-authentication
 common:
+  - type: AgenticAccess
+    url: agentic-access/freshchat-agentic-access.yml
   - type: TrustCenter
     url: security/freshchat-trust-center.yml
   - type: VulnerabilityDisclosure
