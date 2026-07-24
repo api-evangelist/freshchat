@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: Freshchat REST Accounts Agents API
+  version: v2
+  description: 'Best-effort OpenAPI 3.1 description of the Freshchat REST API v2 for managing
+
+    agents, users, conversations, messages, channels, groups, and roles.
+
+    Generated from public documentation; not an official spec.
+
+    '
+  contact:
+    name: Freshchat Developer Portal
+    url: https://developers.freshchat.com/api/
+servers:
+- url: https://{account}.freshchat.com/v2
+  description: Account-scoped base URL
+  variables:
+    account:
+      default: api
+      description: Account subdomain
+security:
+- bearerAuth: []
+tags:
+- name: Agents
+paths:
+  /agents:
+    get:
+      tags:
+      - Agents
+      operationId: listAgents
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+    post:
+      tags:
+      - Agents
+      operationId: createAgent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          $ref: '#/components/responses/Ok'
+  /agents/{agent_id}:
+    parameters:
+    - in: path
+      name: agent_id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Agents
+      operationId: getAgent
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+    put:
+      tags:
+      - Agents
+      operationId: updateAgent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+    delete:
+      tags:
+      - Agents
+      operationId: deleteAgent
+      responses:
+        '204':
+          description: No Content
+  /agents/status:
+    get:
+      tags:
+      - Agents
+      operationId: listAgentStatuses
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+components:
+  schemas:
+    Object:
+      type: object
+      additionalProperties: true
+  responses:
+    Ok:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Object'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token generated in the Freshchat admin console.

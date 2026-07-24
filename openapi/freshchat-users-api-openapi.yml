@@ -1,0 +1,125 @@
+openapi: 3.1.0
+info:
+  title: Freshchat REST Accounts Users API
+  version: v2
+  description: 'Best-effort OpenAPI 3.1 description of the Freshchat REST API v2 for managing
+
+    agents, users, conversations, messages, channels, groups, and roles.
+
+    Generated from public documentation; not an official spec.
+
+    '
+  contact:
+    name: Freshchat Developer Portal
+    url: https://developers.freshchat.com/api/
+servers:
+- url: https://{account}.freshchat.com/v2
+  description: Account-scoped base URL
+  variables:
+    account:
+      default: api
+      description: Account subdomain
+security:
+- bearerAuth: []
+tags:
+- name: Users
+paths:
+  /users:
+    get:
+      tags:
+      - Users
+      operationId: listUsers
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+    post:
+      tags:
+      - Users
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          $ref: '#/components/responses/Ok'
+  /users/fetch:
+    post:
+      tags:
+      - Users
+      operationId: fetchUsers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+  /users/{user_id}:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      tags:
+      - Users
+      operationId: getUser
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+    put:
+      tags:
+      - Users
+      operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+    delete:
+      tags:
+      - Users
+      operationId: deleteUser
+      responses:
+        '204':
+          description: No Content
+  /users/{user_id}/conversations:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      tags:
+      - Users
+      operationId: listUserConversations
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+components:
+  schemas:
+    Object:
+      type: object
+      additionalProperties: true
+  parameters:
+    UserId:
+      in: path
+      name: user_id
+      required: true
+      schema:
+        type: string
+  responses:
+    Ok:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Object'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token generated in the Freshchat admin console.

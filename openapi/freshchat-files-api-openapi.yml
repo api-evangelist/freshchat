@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: Freshchat REST Accounts Files API
+  version: v2
+  description: 'Best-effort OpenAPI 3.1 description of the Freshchat REST API v2 for managing
+
+    agents, users, conversations, messages, channels, groups, and roles.
+
+    Generated from public documentation; not an official spec.
+
+    '
+  contact:
+    name: Freshchat Developer Portal
+    url: https://developers.freshchat.com/api/
+servers:
+- url: https://{account}.freshchat.com/v2
+  description: Account-scoped base URL
+  variables:
+    account:
+      default: api
+      description: Account subdomain
+security:
+- bearerAuth: []
+tags:
+- name: Files
+paths:
+  /files/upload:
+    post:
+      tags:
+      - Files
+      operationId: uploadFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+  /images/upload:
+    post:
+      tags:
+      - Files
+      operationId: uploadImage
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          $ref: '#/components/responses/Ok'
+components:
+  schemas:
+    Object:
+      type: object
+      additionalProperties: true
+  responses:
+    Ok:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Object'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer API token generated in the Freshchat admin console.
