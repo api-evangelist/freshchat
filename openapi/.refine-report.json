@@ -1,0 +1,38 @@
+{
+  "provider": "freshchat",
+  "sources": [
+    "freshchat-accounts-api-openapi.yml",
+    "freshchat-agents-api-openapi.yml",
+    "freshchat-businesshours-api-openapi.yml",
+    "freshchat-channels-api-openapi.yml",
+    "freshchat-conversations-api-openapi.yml",
+    "freshchat-csat-api-openapi.yml",
+    "freshchat-files-api-openapi.yml",
+    "freshchat-groups-api-openapi.yml",
+    "freshchat-messages-api-openapi.yml",
+    "freshchat-metrics-api-openapi.yml",
+    "freshchat-outboundmessages-api-openapi.yml",
+    "freshchat-roles-api-openapi.yml",
+    "freshchat-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "freshchat-accounts-api-openapi.yml",
+    "freshchat-agents-api-openapi.yml",
+    "freshchat-businesshours-api-openapi.yml",
+    "freshchat-channels-api-openapi.yml",
+    "freshchat-conversations-api-openapi.yml",
+    "freshchat-csat-api-openapi.yml",
+    "freshchat-files-api-openapi.yml",
+    "freshchat-groups-api-openapi.yml",
+    "freshchat-messages-api-openapi.yml",
+    "freshchat-metrics-api-openapi.yml",
+    "freshchat-outboundmessages-api-openapi.yml",
+    "freshchat-roles-api-openapi.yml",
+    "freshchat-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
