@@ -1,0 +1,34 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Freshchat REST Accounts Roles API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/roles"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

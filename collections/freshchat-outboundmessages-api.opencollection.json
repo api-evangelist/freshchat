@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Freshchat REST Accounts OutboundMessages API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OutboundMessages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "sendOutboundWhatsAppMessage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.freshchat.com/v2/outbound-messages/whatsapp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listOutboundMessages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/outbound-messages"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,34 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Freshchat REST Accounts BusinessHours API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BusinessHours",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getWithinBusinessHours",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{account}.freshchat.com/v2/business-hours/within-bh"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
