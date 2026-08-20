@@ -25,6 +25,14 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/freshchat.
 tags:
   - Customer Messaging
   - Live Chat
+  - Customer-Support
+  - Conversational Engagement
+  - Omnichannel Messaging
+  - Chatbots
+  - Freshworks
+tags_raw:
+  - Customer Messaging
+  - Live Chat
   - Customer Support
   - Conversational Engagement
   - Omnichannel Messaging
@@ -42,6 +50,8 @@ apis:
   humanURL: https://developers.freshchat.com/api/
   baseURL: https://api.freshchat.com/v2
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -90,6 +100,8 @@ apis:
   humanURL: https://developers.freshchat.com/api/
   baseURL: https://api.freshchat.com/v2
   tags:
+  - Business Hours
+  tags_raw:
   - BusinessHours
   properties:
   - type: OpenAPI
@@ -186,6 +198,8 @@ apis:
   humanURL: https://developers.freshchat.com/api/
   baseURL: https://api.freshchat.com/v2
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -210,6 +224,8 @@ apis:
   humanURL: https://developers.freshchat.com/api/
   baseURL: https://api.freshchat.com/v2
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -234,6 +250,8 @@ apis:
   humanURL: https://developers.freshchat.com/api/
   baseURL: https://api.freshchat.com/v2
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -330,6 +348,8 @@ apis:
   humanURL: https://developers.freshchat.com/api/
   baseURL: https://api.freshchat.com/v2
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
