@@ -112,7 +112,7 @@ apis:
   humanURL: https://developers.freshchat.com/api/
   baseURL: https://api.freshchat.com/v2
   tags:
-  - BusinessHours
+  - Business Hours
   tags_raw:
   - BusinessHours
   properties:
