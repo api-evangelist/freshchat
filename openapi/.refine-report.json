@@ -1,27 +1,15 @@
 {
   "provider": "freshchat",
   "sources": [
-    "freshchat-accounts-api-openapi.yml",
-    "freshchat-agents-api-openapi.yml",
-    "freshchat-businesshours-api-openapi.yml",
-    "freshchat-channels-api-openapi.yml",
-    "freshchat-conversations-api-openapi.yml",
-    "freshchat-csat-api-openapi.yml",
-    "freshchat-files-api-openapi.yml",
-    "freshchat-groups-api-openapi.yml",
-    "freshchat-messages-api-openapi.yml",
-    "freshchat-metrics-api-openapi.yml",
-    "freshchat-outboundmessages-api-openapi.yml",
-    "freshchat-roles-api-openapi.yml",
-    "freshchat-users-api-openapi.yml"
+    "_original/freshchat-openapi.yml"
   ],
   "outputs": [
     "freshchat-accounts-api-openapi.yml",
     "freshchat-agents-api-openapi.yml",
     "freshchat-businesshours-api-openapi.yml",
+    "freshchat-csat-api-openapi.yml",
     "freshchat-channels-api-openapi.yml",
     "freshchat-conversations-api-openapi.yml",
-    "freshchat-csat-api-openapi.yml",
     "freshchat-files-api-openapi.yml",
     "freshchat-groups-api-openapi.yml",
     "freshchat-messages-api-openapi.yml",
@@ -30,9 +18,30 @@
     "freshchat-roles-api-openapi.yml",
     "freshchat-users-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "freshchat-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: freshchat-business-hours-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 13 total)"
+  ],
+  "skipped": [
+    "freshchat-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-business-hours-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-channels-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-conversations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-csat-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-outboundmessages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-roles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "freshchat-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

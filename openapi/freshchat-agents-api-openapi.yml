@@ -1,14 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Freshchat REST Accounts Agents API
+  title: Freshchat REST Agents API
   version: v2
   description: 'Best-effort OpenAPI 3.1 description of the Freshchat REST API v2 for managing
 
     agents, users, conversations, messages, channels, groups, and roles.
 
-    Generated from public documentation; not an official spec.
-
-    '
+    Generated from public documentation; not an official spec.'
   contact:
     name: Freshchat Developer Portal
     url: https://developers.freshchat.com/api/
@@ -32,6 +30,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Ok'
+      summary: List agents
+      x-summary-source: derived
     post:
       tags:
       - Agents
@@ -45,6 +45,8 @@ paths:
       responses:
         '201':
           $ref: '#/components/responses/Ok'
+      summary: Create agent
+      x-summary-source: derived
   /agents/{agent_id}:
     parameters:
     - in: path
@@ -59,6 +61,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Ok'
+      summary: Get agent
+      x-summary-source: derived
     put:
       tags:
       - Agents
@@ -72,6 +76,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Ok'
+      summary: Update agent
+      x-summary-source: derived
     delete:
       tags:
       - Agents
@@ -79,6 +85,8 @@ paths:
       responses:
         '204':
           description: No Content
+      summary: Delete agent
+      x-summary-source: derived
   /agents/status:
     get:
       tags:
@@ -87,11 +95,9 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Ok'
+      summary: List agent statuses
+      x-summary-source: derived
 components:
-  schemas:
-    Object:
-      type: object
-      additionalProperties: true
   responses:
     Ok:
       description: Successful response
@@ -99,6 +105,10 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Object'
+  schemas:
+    Object:
+      type: object
+      additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http

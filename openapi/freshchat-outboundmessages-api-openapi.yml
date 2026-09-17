@@ -1,14 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Freshchat REST Accounts OutboundMessages API
+  title: Freshchat REST Outbound Messages API
   version: v2
   description: 'Best-effort OpenAPI 3.1 description of the Freshchat REST API v2 for managing
 
     agents, users, conversations, messages, channels, groups, and roles.
 
-    Generated from public documentation; not an official spec.
-
-    '
+    Generated from public documentation; not an official spec.'
   contact:
     name: Freshchat Developer Portal
     url: https://developers.freshchat.com/api/
@@ -38,6 +36,8 @@ paths:
       responses:
         '201':
           $ref: '#/components/responses/Ok'
+      summary: Send outbound whats app message
+      x-summary-source: derived
   /outbound-messages:
     get:
       tags:
@@ -46,11 +46,9 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Ok'
+      summary: List outbound messages
+      x-summary-source: derived
 components:
-  schemas:
-    Object:
-      type: object
-      additionalProperties: true
   responses:
     Ok:
       description: Successful response
@@ -58,6 +56,10 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Object'
+  schemas:
+    Object:
+      type: object
+      additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
