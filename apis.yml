@@ -107,32 +107,6 @@ apis:
   - type: Webhooks
     url: >-
       https://crmsupport.freshworks.com/support/solutions/articles/50000004461-freshchat-webhooks-payload-structure-and-authentication
-- aid: freshchat:freshchat-businesshours-api
-  name: Freshchat BusinessHours API
-  description: The BusinessHours API from Freshchat — 1 operation(s) for businesshours.
-  humanURL: https://developers.freshchat.com/api/
-  baseURL: https://api.freshchat.com/v2
-  tags:
-  - Business Hours
-  tags_raw:
-  - BusinessHours
-  properties:
-  - type: OpenAPI
-    url: openapi/freshchat-businesshours-api-openapi.yml
-  - type: Documentation
-    url: https://developers.freshchat.com/api/
-  - type: DeveloperPortal
-    url: https://developers.freshchat.com
-  - type: Web SDK
-    url: https://developers.freshchat.com/web-sdk/
-  - type: Mobile SDK
-    url: https://developers.freshchat.com/mobile-sdk/
-  - type: AsyncAPI
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/freshchat/refs/heads/main/openapi/freshchat-asyncapi.yml
-  - type: Webhooks
-    url: >-
-      https://crmsupport.freshworks.com/support/solutions/articles/50000004461-freshchat-webhooks-payload-structure-and-authentication
 - aid: freshchat:freshchat-channels-api
   name: Freshchat Channels API
   description: The Channels API from Freshchat — 1 operation(s) for channels.
@@ -367,6 +341,30 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/freshchat-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.freshchat.com/api/
+  - type: DeveloperPortal
+    url: https://developers.freshchat.com
+  - type: Web SDK
+    url: https://developers.freshchat.com/web-sdk/
+  - type: Mobile SDK
+    url: https://developers.freshchat.com/mobile-sdk/
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/freshchat/refs/heads/main/openapi/freshchat-asyncapi.yml
+  - type: Webhooks
+    url: >-
+      https://crmsupport.freshworks.com/support/solutions/articles/50000004461-freshchat-webhooks-payload-structure-and-authentication
+- aid: freshchat:freshchat-business-hours-api
+  name: Freshchat Business Hours API
+  description: The Business Hours API from Freshchat — 1 operation(s) for business hours.
+  humanURL: https://developers.freshchat.com/api/
+  baseURL: https://api.freshchat.com/v2
+  tags:
+  - Business Hours
+  properties:
+  - type: OpenAPI
+    url: openapi/freshchat-business-hours-api-openapi.yml
   - type: Documentation
     url: https://developers.freshchat.com/api/
   - type: DeveloperPortal
