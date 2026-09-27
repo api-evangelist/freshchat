@@ -50,13 +50,10 @@ paths:
       summary: Send message
       x-summary-source: derived
 components:
-  parameters:
-    ConversationId:
-      in: path
-      name: conversation_id
-      required: true
-      schema:
-        type: string
+  schemas:
+    Object:
+      type: object
+      additionalProperties: true
   responses:
     Ok:
       description: Successful response
@@ -64,10 +61,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Object'
-  schemas:
-    Object:
-      type: object
-      additionalProperties: true
+  parameters:
+    ConversationId:
+      in: path
+      name: conversation_id
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

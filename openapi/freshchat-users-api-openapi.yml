@@ -112,13 +112,6 @@ paths:
       summary: List user conversations
       x-summary-source: derived
 components:
-  responses:
-    Ok:
-      description: Successful response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Object'
   parameters:
     UserId:
       in: path
@@ -126,6 +119,13 @@ components:
       required: true
       schema:
         type: string
+  responses:
+    Ok:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Object'
   schemas:
     Object:
       type: object

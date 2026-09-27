@@ -38,7 +38,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/freshchat.
 tags:
   - Customer Messaging
   - Live Chat
-  - Customer-Support
+  - Customer Support
   - Conversational Engagement
   - Omnichannel Messaging
   - Chatbots
@@ -51,6 +51,7 @@ tags_raw:
   - Omnichannel Messaging
   - Chatbots
   - Freshworks
+  - Customer-Support
 url: >-
   https://raw.githubusercontent.com/api-evangelist/freshchat/refs/heads/main/apis.yml
 created: '2026-05-11'
