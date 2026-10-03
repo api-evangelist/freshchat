@@ -41,10 +41,6 @@ paths:
       summary: Create csat rating
       x-summary-source: derived
 components:
-  schemas:
-    Object:
-      type: object
-      additionalProperties: true
   responses:
     Ok:
       description: Successful response
@@ -52,6 +48,10 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Object'
+  schemas:
+    Object:
+      type: object
+      additionalProperties: true
   parameters:
     ConversationId:
       in: path
