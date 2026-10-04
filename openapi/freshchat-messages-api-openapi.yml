@@ -50,6 +50,13 @@ paths:
       summary: Send message
       x-summary-source: derived
 components:
+  parameters:
+    ConversationId:
+      in: path
+      name: conversation_id
+      required: true
+      schema:
+        type: string
   responses:
     Ok:
       description: Successful response
@@ -61,13 +68,6 @@ components:
     Object:
       type: object
       additionalProperties: true
-  parameters:
-    ConversationId:
-      in: path
-      name: conversation_id
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
