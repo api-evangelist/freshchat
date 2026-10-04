@@ -381,6 +381,9 @@ apis:
     url: >-
       https://crmsupport.freshworks.com/support/solutions/articles/50000004461-freshchat-webhooks-payload-structure-and-authentication
 common:
+  - type: CapabilityMap
+    url: capabilities/freshchat-capability-edges.yml
+    name: Freshchat Business Capability Map
   - type: AgenticAccess
     url: agentic-access/freshchat-agentic-access.yml
   - type: TrustCenter

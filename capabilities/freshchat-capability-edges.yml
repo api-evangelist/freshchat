@@ -1,0 +1,53 @@
+slug: freshchat
+provider: Freshchat
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: CSAT
+  spec_file: freshchat-csat-api-openapi.yml
+  capability_id: BC-430.50
+  capability_id_l1: BC-430
+  capability_name: Customer Feedback Management
+  confidence: 0.85
+  evidence: POST /csat/{conversation_id}  createCsatRating  Create csat rating
+  reason: CSAT ratings captured against support conversations are voice-of-customer / satisfaction feedback
+    collection.
+- tag: Conversations
+  spec_file: freshchat-conversations-api-openapi.yml
+  capability_id: BC-430.10
+  capability_id_l1: BC-430
+  capability_name: Customer Inquiry Management
+  confidence: 0.8
+  evidence: POST /conversations  createConversation; PUT /conversations/{conversation_id}  updateConversation
+  reason: Conversations are inbound customer support/sales interactions handled by agents — inbound contact
+    capture, routing and resolution.
+- tag: Messages
+  spec_file: freshchat-messages-api-openapi.yml
+  capability_id: BC-430.10
+  capability_id_l1: BC-430
+  capability_name: Customer Inquiry Management
+  confidence: 0.8
+  evidence: GET /conversations/{conversation_id}/messages  listMessages; POST ... sendMessage  Send message
+  reason: Message exchange within customer support conversations is the core handling of inbound customer
+    contacts.
+- tag: Users
+  spec_file: freshchat-users-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.7
+  evidence: POST /users createUser Create user; GET /users/{user_id}/conversations listUserConversations
+    List user conversations
+  reason: In Freshchat 'users' are the end customers being messaged (distinct from agents), so full CRUD
+    over user records plus their conversation history is customer master-data maintenance. Moderate confidence
+    because the tag could also be read as platform user administration.
