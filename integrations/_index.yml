@@ -39,5 +39,5 @@
     - connectors/applications/freshchat
     vendor_link: https://www.freshworks.com/live-chat-software/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
